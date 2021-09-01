@@ -1,0 +1,224 @@
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'SF Pro Display', 'Courier New', Courier, monospace;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bg-red, .bg-blue {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  transition: all 1s;
+}
+
+.bg-red {
+  background: linear-gradient(90deg, #F78CA0 0%, #F9748F 20.31%, #FD868C 66.67%, #FE9A8B 100%), #FFFFFF;
+}
+
+.bg-blue {
+  background: linear-gradient(180deg, #48C6EF 0%, #6F86D6 100%), linear-gradient(90deg, #F78CA0 0%, #F9748F 20.31%, #FD868C 66.67%, #FE9A8B 100%), #FFFFFF;
+}
+
+// Timer
+
+.timer {
+  position: relative;
+  margin-bottom: 60px;
+
+  &__progress {
+    position: relative;
+
+    #progress {
+      transform: rotate(-90deg);
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      circle {
+        transition: all 1s linear;
+      }
+    }
+  }
+
+  &__time {
+    color: #FAFAFA;
+    font-weight: 300;
+    font-size: 60px;
+    line-height: 72px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// Button
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  background: none;
+  padding: 20px 40px;
+  color: #fff;
+  border: 1px solid #fafafa;
+  border-radius: 300px;
+
+  font-weight: 300;
+  font-size: 25px;
+  line-height: 30px;
+
+  &:hover {
+    background: rgba(#fff, .2);
+  }
+
+  &:active {
+    background: rgba(#fff, .4);
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+
+  .btn {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+.settings-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  transform-origin: center center;
+  animation-name: rotate;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: paused;
+
+  &:hover {
+    animation-play-state: running;
+
+    // transition: all 5s;
+    // transform: rotate(1000deg);
+  }
+}
+
+// Modal
+
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .5s;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &.show &-content {
+    transform: translateY(0);
+  }
+
+  &-overlay {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(#000, .3);
+  }
+
+  &-content {
+    position: relative;
+    z-index: 11;
+    
+    width: 100%;
+    max-width: 585px;
+    margin: 0 15px;
+
+    transform: translateY(-100px);
+    transition: all .5s;
+  }
+}
+
+.settings-form {
+  background: linear-gradient(90deg, #F78CA0 0%, #F9748F 20.31%, #FD868C 66.67%, #FE9A8B 100%), #FEAFAF;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  padding: 30px;
+
+  color: #fff;
+
+  width: 100%;
+
+  label {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 15px;
+  }
+}
+
+.form-group {
+  margin-bottom: 23px;
+}
+
+.form-control {
+  padding: 25px 17px;
+  color: #fff;
+  
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  border: none;
+
+  width: 100%;
+  display: block;
+
+  font-size: 20px;
+  font-weight: bold;
+}
